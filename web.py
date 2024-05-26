@@ -23,7 +23,7 @@ def hello_world():
           user=os.environ.get("POSTGRES_USER") or "postgres",
           password=os.environ.get("POSTGRES_PASSWORD") or "postgres",
           database=os.environ.get("POSTGRES_DB") or "postgres",
-          timeout=10.0,
+          timeout=3.0,
         )
         db_date = conn.run("SELECT now()")[0][0]
     except Exception as e:

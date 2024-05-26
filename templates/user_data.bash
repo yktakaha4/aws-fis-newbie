@@ -8,13 +8,8 @@ dnf install -y git python3.11 python3.11-pip
 
 pip3.11 install poetry==1.7.1
 
-cd /home/ec2-user
-git clone "https://github.com/yktakaha4/aws-fis-newbie"
-
-cd "aws-fis-newbie"
-chown -R ec2-user:ec2-user .
-
-poetry install
+git clone "https://github.com/yktakaha4/aws-fis-newbie" /home/ec2-user/aws-fis-newbie
+chown -R ec2-user:ec2-user /home/ec2-user/aws-fis-newbie
 
 cat <<EOF > /etc/systemd/system/web.service
 [Unit]
@@ -29,7 +24,7 @@ Environment=POSTGRES_PORT=${postgres_port}
 Environment=POSTGRES_USER=${postgres_user}
 Environment=POSTGRES_PASSWORD=${postgres_password}
 Environment=POSTGRES_DB=${postgres_db}
-ExecStart=/usr/local/bin/poetry run python /home/ec2-user/aws-fis-newbie/web.py
+ExecStart=/home/ec2-user/aws-fis-newbie/run_web.bash
 Restart=always
 
 [Install]
