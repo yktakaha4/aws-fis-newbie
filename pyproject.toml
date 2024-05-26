@@ -6,7 +6,7 @@ authors = ["Yuuki Takahashi <20282867+yktakaha4@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 flask = "^3.0.3"
 pg8000 = "^1.31.2"
 

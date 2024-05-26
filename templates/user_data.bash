@@ -4,9 +4,9 @@ set -xeuo pipefail
 
 timedatectl set-timezone Asia/Tokyo
 
-dnf install -y git python3-pip
+dnf install -y git python3.11 python3.11-pip
 
-pip3 install poetry==1.8.3
+pip3.11 install poetry==1.7.1
 
 git clone "https://github.com/yktakaha4/aws-fis-newbie"
 
