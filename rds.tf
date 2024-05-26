@@ -1,11 +1,20 @@
 resource "random_string" "db_password" {
   length  = 32
-  special = true
+  special = false
 }
 
 resource "aws_security_group" "db" {
   name   = "${var.service}-db"
   vpc_id = aws_vpc.main.id
+}
+
+resource "aws_security_group_rule" "db_ingress_web" {
+  type                     = "ingress"
+  from_port                = 5432
+  to_port                  = 5432
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.web.id
+  security_group_id        = aws_security_group.db.id
 }
 
 resource "aws_security_group_rule" "db_egress" {
