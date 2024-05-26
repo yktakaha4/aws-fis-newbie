@@ -19,6 +19,7 @@ After=network.target
 [Service]
 User=ec2-user
 WorkingDirectory=/home/ec2-user/aws-fis-newbie
+Environment=SERVER_NAME=${server_name}
 Environment=POSTGRES_HOST=${postgres_host}
 Environment=POSTGRES_PORT=${postgres_port}
 Environment=POSTGRES_USER=${postgres_user}

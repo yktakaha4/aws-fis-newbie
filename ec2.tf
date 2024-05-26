@@ -40,6 +40,7 @@ resource "aws_instance" "web_1" {
   associate_public_ip_address = true
 
   user_data = templatefile("${path.module}/templates/user_data.bash", {
+    server_name       = "web-1"
     postgres_host     = aws_db_instance.main.address
     postgres_port     = aws_db_instance.main.port
     postgres_db       = aws_db_instance.main.db_name
