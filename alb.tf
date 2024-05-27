@@ -30,6 +30,8 @@ resource "aws_lb" "main" {
     aws_subnet.public_2.id
   ]
 
+  idle_timeout = 7
+
   tags = {
     Name = "${var.service}-alb"
   }
