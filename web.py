@@ -4,6 +4,8 @@ from flask import Flask, request
 from pg8000.native import Connection
 
 app = Flask(__name__)
+server_start = datetime.now()
+
 
 @app.route("/")
 def hello_world():
@@ -13,7 +15,7 @@ def hello_world():
         client_ip = request.remote_addr
 
     server_name = os.environ.get("SERVER_NAME", "Unknown")
-    server_date = datetime.now()
+    server_now = datetime.now()
 
     conn = None
     try:
@@ -25,9 +27,9 @@ def hello_world():
           database=os.environ.get("POSTGRES_DB") or "postgres",
           timeout=3.0,
         )
-        db_date = conn.run("SELECT now()")[0][0]
+        db_now = conn.run("SELECT now()")[0][0]
     except Exception as e:
-        db_date = f"<span style=\"color: red;\">{e}</span>"
+        db_now = f"<span style=\"color: red;\">{e}</span>"
     finally:
         if conn:
             conn.close()
@@ -37,8 +39,9 @@ def hello_world():
 <table>
 <tr><td>Client IP</td><td>{client_ip}</td></tr>
 <tr><td>Server Name</td><td>{server_name}</td></tr>
-<tr><td>Server Date</td><td>{server_date}</td></tr>
-<tr><td>DB Date</td><td>{db_date}</td></tr>
+<tr><td>Server Start</td><td>{server_start}</td></tr>
+<tr><td>Server Now</td><td>{server_now}</td></tr>
+<tr><td>DB Now</td><td>{db_now}</td></tr>
 </table>
 """
 
