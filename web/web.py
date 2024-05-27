@@ -7,8 +7,13 @@ app = Flask(__name__)
 server_start = datetime.now()
 
 
+@app.route("/health")
+def health():
+    return "OK"
+
+
 @app.route("/")
-def hello_world():
+def index():
     if request.headers.getlist("X-Forwarded-For"):
         client_ip = request.headers.getlist("X-Forwarded-For")[0]
     else:
@@ -29,7 +34,7 @@ def hello_world():
         )
         db_now = conn.run("SELECT now()")[0][0]
     except Exception as e:
-        db_now = f"<span style=\"color: red;\">{e}</span>"
+        return f"DB Error: {e}", 500
     finally:
         if conn:
             conn.close()
@@ -38,7 +43,7 @@ def hello_world():
 <!DOCTYPE html>
 <html>
 <head>
-    <title>It works!</title>
+    <title>aws-fis-newbie</title>
     <meta charset="utf-8">
 </head>
 <body>
