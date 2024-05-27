@@ -47,6 +47,6 @@ resource "aws_db_instance" "main" {
   vpc_security_group_ids = [aws_security_group.db.id]
   db_subnet_group_name   = aws_db_subnet_group.main.name
   availability_zone      = aws_subnet.private_1.availability_zone
-  storage_encrypted      = true
   skip_final_snapshot    = true
+  multi_az               = true
 }
