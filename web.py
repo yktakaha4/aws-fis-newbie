@@ -35,14 +35,23 @@ def hello_world():
             conn.close()
 
     return f"""
-<h2>It works!</h2>
-<table>
-<tr><td>Client IP</td><td>{client_ip}</td></tr>
-<tr><td>Server Name</td><td>{server_name}</td></tr>
-<tr><td>Server Start</td><td>{server_start}</td></tr>
-<tr><td>Server Now</td><td>{server_now}</td></tr>
-<tr><td>DB Now</td><td>{db_now}</td></tr>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>It works!</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>It works!</h2>
+    <table>
+        <tr><td>Client IP</td><td>{client_ip}</td></tr>
+        <tr><td>Server Name</td><td>{server_name}</td></tr>
+        <tr><td>Server Start</td><td>{server_start}</td></tr>
+        <tr><td>Server Now</td><td>{server_now}</td></tr>
+        <tr><td>DB Now</td><td>{db_now}</td></tr>
+    </table>
+</body>
+</html>
 """
 
 app.run(host="0.0.0.0", port=5000, debug=True)
