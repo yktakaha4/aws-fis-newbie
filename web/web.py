@@ -34,7 +34,7 @@ def index():
         )
         db_now = conn.run("SELECT now()")[0][0]
     except Exception as e:
-        return f"DB Error: {e}", 500
+        db_now = f"<span style=\"color: red;\">DB Error: {e}</span>"
     finally:
         if conn:
             conn.close()
