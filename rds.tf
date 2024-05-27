@@ -49,4 +49,5 @@ resource "aws_db_instance" "main" {
   availability_zone      = aws_subnet.private_1.availability_zone
   skip_final_snapshot    = true
   multi_az               = true
+  apply_immediately      = true
 }
